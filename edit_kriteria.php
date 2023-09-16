@@ -24,13 +24,8 @@
 						<label>Aspek Penilaian</label>
 						<input type="hidden" name="id_faktor" id="id_faktor" value="<?php echo $id; ?>">
 						<select name="id_aspek" id="id_aspek" class="form-control" required="true">
-							<option value="1" <?php if ($id_aspek == "1"){ echo "selected"; } ?>>Nitrogen</option>
-							<option value="2" <?php if ($id_aspek == "2"){ echo "selected"; } ?>>Phosporus</option>
-							<option value="3" <?php if ($id_aspek == "3"){ echo "selected"; } ?>>Potassium</option>
-							<option value="4" <?php if ($id_aspek == "4"){ echo "selected"; } ?>>Suhu Tanah</option>
-							<option value="5" <?php if ($id_aspek == "5"){ echo "selected"; } ?>>Kelmebapan Tanah</option>
-							<option value="6" <?php if ($id_aspek == "6"){ echo "selected"; } ?>>Nilai ph Tanah</option>
-							<option value="7" <?php if ($id_aspek == "7"){ echo "selected"; } ?>>Curah Hujan</option>
+							<option value="1" <?php if ($id_aspek == "1"){ echo "selected"; } ?>>Kandungan Nutrisi Tanah</option>
+							<option value="2" <?php if ($id_aspek == "2"){ echo "selected"; } ?>>Kondisi Lingkungan</option>
 						</select>
 					</div>
 					<div class="form-group">
