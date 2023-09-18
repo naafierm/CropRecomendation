@@ -1,5 +1,5 @@
 <?php // jika submit button diklik
-  if(isset( $_REQUEST['Simpan_kecerdasan'] ) ){
+  if(isset( $_REQUEST['Simpan_kandunganNutrisi'] ) ){
     
       $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(1,2,3,4)");
       $queryloop = "SELECT * FROM master_pelamar";
@@ -23,7 +23,7 @@
 
     }
 
-   if(isset( $_REQUEST['Simpan_wawancara'] ) ){
+   if(isset( $_REQUEST['Simpan_kondisiLingkungan'] ) ){
     
       $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(5,6,7,8)");
       $queryloop = "SELECT * FROM master_pelamar";
@@ -46,29 +46,29 @@
 
     }
 
-   if(isset( $_REQUEST['Simpan_sikapkerja'] ) ){
+  //  if(isset( $_REQUEST['Simpan_sikapkerja'] ) ){
     
-      $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(9,10,11,12)");
-      $queryloop = "SELECT * FROM master_pelamar";
-      $sql_loop = mysqli_query($koneksi, $queryloop);
-      if(mysqli_num_rows($sql_loop) > 0){
-          while($row_loop = mysqli_fetch_array($sql_loop)){
-            $a9 = array(array($row_loop['id_pelamar'],9,$_REQUEST[$row_loop['id_pelamar'].'_A9']));
-            $a10 = array(array($row_loop['id_pelamar'],10,$_REQUEST[$row_loop['id_pelamar'].'_A10']));
-            $a11 = array(array($row_loop['id_pelamar'],11,$_REQUEST[$row_loop['id_pelamar'].'_A11']));
-            $a12 = array(array($row_loop['id_pelamar'],12,$_REQUEST[$row_loop['id_pelamar'].'_A12']));
+  //     $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(9,10,11,12)");
+  //     $queryloop = "SELECT * FROM master_pelamar";
+  //     $sql_loop = mysqli_query($koneksi, $queryloop);
+  //     if(mysqli_num_rows($sql_loop) > 0){
+  //         while($row_loop = mysqli_fetch_array($sql_loop)){
+  //           $a9 = array(array($row_loop['id_pelamar'],9,$_REQUEST[$row_loop['id_pelamar'].'_A9']));
+  //           $a10 = array(array($row_loop['id_pelamar'],10,$_REQUEST[$row_loop['id_pelamar'].'_A10']));
+  //           $a11 = array(array($row_loop['id_pelamar'],11,$_REQUEST[$row_loop['id_pelamar'].'_A11']));
+  //           $a12 = array(array($row_loop['id_pelamar'],12,$_REQUEST[$row_loop['id_pelamar'].'_A12']));
             
-            $sqla1 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a9[0][0]."', '".$a9[0][1]."', '".$a9[0][2]."')");
-             $sqla2 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a10[0][0]."', '".$a10[0][1]."', '".$a10[0][2]."')");
-              $sqla3 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a11[0][0]."', '".$a11[0][1]."', '".$a11[0][2]."')");
-               $sqla4 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a12[0][0]."', '".$a12[0][1]."', '".$a12[0][2]."')");
+  //           $sqla1 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a9[0][0]."', '".$a9[0][1]."', '".$a9[0][2]."')");
+  //            $sqla2 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a10[0][0]."', '".$a10[0][1]."', '".$a10[0][2]."')");
+  //             $sqla3 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a11[0][0]."', '".$a11[0][1]."', '".$a11[0][2]."')");
+  //              $sqla4 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a12[0][0]."', '".$a12[0][1]."', '".$a12[0][2]."')");
 
-               echo "<script>alert('Proses Profile Matching Tersimpan');location='home.php?page=profile';</script>";
+  //              echo "<script>alert('Proses Profile Matching Tersimpan');location='home.php?page=profile';</script>";
 
-          }
-      }
+  //         }
+  //     }
 
-    }
+  //   }
 
 ?>
     <form class="form-kecerdasan" method="post" action="" role="form">
@@ -77,13 +77,13 @@
          <div class="col-6">
             <select class="custom-select d-block w-50" id="aspek" name="aspek" required>
               <option value="">Pilih Aspek...</option>
-              <option value="Nitrogen" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Nitrogen" ? "selected=selected" : "";?>>Nitrogen</option>
-              <option value="Phosporus" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Phosporus" ? "selected=selected" : "";?>>Phosporus</option>
-              <option value="Potassium" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Potassium" ? "selected=selected" : "";?>>Potassium</option>
+              <option value="Kandungan Nutrisi Tanah" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Kandungan Nutrisi Tanah" ? "selected=selected" : "";?>>Kandungan Nutrisi Tanah</option>
+              <option value="Kondisi Lingkungan" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Kondisi Lingkungan" ? "selected=selected" : "";?>>Kondisi Lingkungan</option>
+              <!-- <option value="Potassium" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Potassium" ? "selected=selected" : "";?>>Potassium</option>
               <option value="Suhu Tanah" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Suhu Tanah" ? "selected=selected" : "";?>>Suhu Tanah</option>
               <option value="Kelmebapan Tanah" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Kelmebapan Tanah" ? "selected=selected" : "";?>>Kelmebapan Tanah</option>
               <option value="Nilai ph Tanah" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Nilai ph Tanah" ? "selected=selected" : "";?>>Nilai ph Tanaha</option>
-              <option value="Curah Hujan" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Curah Hujan" ? "selected=selected" : "";?>>Curah Hujan</option>
+              <option value="Curah Hujan" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Curah Hujan" ? "selected=selected" : "";?>>Curah Hujan</option> -->
             </select>
          </div>
       </div>
@@ -95,10 +95,13 @@
                 <thead>
                   <tr>
                     <th>Nama Tanaman Pangan</th>
-                    <th>A1 - Penguasaan Bahasa Pemprograman</th>
-                    <th>A2 - Kreatif</th>
-                    <th>A3 - Logika</th>
-                    <th>A4 - Inovatif</th>
+                    <th>A1 - Nitrogen</th>
+                    <th>A2 - Phosporous</th>
+                    <th>A3 - Potassium</th>
+                    <th>A4 - Suhu Tanah</th>
+                    <th>A5 - Kelembapan Tanah</th>
+                    <th>A6 - Nilai pH Tanah</th>
+                    <th>A7 - Curah Hujan</th>
                   </tr>
                 </thead>
                 <tbody>

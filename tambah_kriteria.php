@@ -7,13 +7,8 @@
 						<label>Aspek Penilaian</label>
 						<select name="id_aspek" id="id_aspek" class="form-control" required="true">
 							<option value=""></option>
-							<option value="1">Nitrogen</option>
-							<option value="2">Potassium</option>
-							<option value="3">Phosporus</option>
-							<option value="4">Suhu Tanah</option>
-							<option value="5">Kelembapan Tanah</option>
-							<option value="6">Nilai ph Tanah</option>
-							<option value="7">Curah Hujan</option>
+							<option value="1">Kandungan Nutrisi Tanah</option>
+							<option value="2">Kondisi Lingkungan</option>
 						</select>
 					</div>
 					<div class="form-group">
