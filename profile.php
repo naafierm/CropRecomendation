@@ -159,7 +159,7 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Nama Pelamar</th>
+                  <th>Nama Tanaman Pangan</th>
                   <th>A5 - Kejujuran</th>
                   <th>A6 - Pengetahuan Tentang pekerjaan</th>
                   <th>A7 - Pengalaman</th>
@@ -223,7 +223,7 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Nama Pelamar</th>
+                  <th>Nama Tanaman Pangan</th>
                   <th>A9 - Kecepatan</th>
                   <th>A10 - Ketelitian</th>
                   <th>A11 - Inisiatif</th>

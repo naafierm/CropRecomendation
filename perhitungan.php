@@ -10,7 +10,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A1</th>
                     <th>A2</th>
                     <th>A3</th>
@@ -57,7 +57,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A1</th>
                     <th>A2</th>
                     <th>A3</th>
@@ -104,7 +104,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A1</th>
                     <th>A2</th>
                     <th>A3</th>
@@ -173,7 +173,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A1</th>
                     <th>A2</th>
                     <th>A3</th>
@@ -268,7 +268,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A5</th>
                     <th>A6</th>
                     <th>A7</th>
@@ -317,7 +317,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A5</th>
                     <th>A6</th>
                     <th>A7</th>
@@ -364,7 +364,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A5</th>
                     <th>A6</th>
                     <th>A7</th>
@@ -433,7 +433,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A5</th>
                     <th>A6</th>
                     <th>A7</th>
@@ -529,7 +529,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A9</th>
                     <th>A10</th>
                     <th>A11</th>
@@ -576,7 +576,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A9</th>
                     <th>A10</th>
                     <th>A11</th>
@@ -623,7 +623,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A9</th>
                     <th>A10</th>
                     <th>A11</th>
@@ -692,7 +692,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
-                    <th>Nama Pelamar</th>
+                    <th>Nama Tanaman Pangan</th>
                     <th>A9</th>
                     <th>A10</th>
                     <th>A11</th>
@@ -795,7 +795,7 @@
 <div class="table-responsive">
 <table class="table  table-striped table-hover">
 <tbody><tr>
-<th>Nama Pelamar</th>
+<th>Nama Tanaman Pangan</th>
 <th>Aspek Kecerdasan</th>
  <th>Aspek Wawancara</th>
 <th>Aspek Sikap Kerja</th>
