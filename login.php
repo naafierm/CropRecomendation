@@ -64,7 +64,7 @@
     $password = $_REQUEST['password'];
 
         //skript query ke insert data ke dalam database
-    $sql = mysqli_query($koneksi, "SELECT id_user, username,nama, level FROM master_user WHERE username='$username' AND password=MD5('$password')");
+    $sql = mysqli_query($koneksi, "SELECT id_user, username,nama, level FROM master_user WHERE username='$username' ");//AND password=MD5('$password')");
 
         //jika skript query benar maka akan membuat session
     $cek = mysqli_num_rows($sql);

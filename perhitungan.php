@@ -14,10 +14,9 @@
                     <th>A1</th>
                     <th>A2</th>
                     <th>A3</th>
-                    <th>A4</th>
                   </tr>
                   <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3,pm.A4 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3',sum( if(id_faktor=4,value,0) ) as 'A4' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
+                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
                     //$query ="select * from master_pelamar";
                     $sql = mysqli_query($koneksi, $query);
                     if(mysqli_num_rows($sql) > 0){
@@ -35,9 +34,6 @@
                     <td>
                         <?php echo $row['A3'];?>
                     </td>
-                    <td>
-                       <?php echo $row['A4'];?>
-                    </td>
                   </tr>
                   <?php
                     }
@@ -49,7 +45,6 @@
 <td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=1");?></td>
 <td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=2");?></td>
 <td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=3");?></td>
-<td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=4");?></td>
 </tr></tfoot>
 </table>
 </div>
@@ -61,16 +56,14 @@
                     <th>A1</th>
                     <th>A2</th>
                     <th>A3</th>
-                    <th>A4</th>
                   </tr>
                   <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3,pm.A4 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3',sum( if(id_faktor=4,value,0) ) as 'A4' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
+                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
                     //$query ="select * from master_pelamar";
                     $sql = mysqli_query($koneksi, $query);
                     $value1 =cari_nilai("select target as nilai from pm_faktor where id_faktor=1");
                     $value2 =cari_nilai("select target as nilai from pm_faktor where id_faktor=2");
                     $value3 =cari_nilai("select target as nilai from pm_faktor where id_faktor=3");
-                    $value4 =cari_nilai("select target as nilai from pm_faktor where id_faktor=4");
                     if(mysqli_num_rows($sql) > 0){
                     while($row = mysqli_fetch_array($sql)){
                       $gap=array();
@@ -87,9 +80,6 @@
                     </td>
                     <td>
                         <?php echo $gap[$row['id_pelamar']] = $row['A3']-$value3;?>
-                    </td>
-                    <td>
-                       <?php echo $gap[$row['id_pelamar']] = $row['A4']-$value4;?>
                     </td>
                   </tr>
                   <?php
@@ -108,16 +98,14 @@
                     <th>A1</th>
                     <th>A2</th>
                     <th>A3</th>
-                    <th>A4</th>
                   </tr>
                   <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3,pm.A4 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3',sum( if(id_faktor=4,value,0) ) as 'A4' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
+                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
                     //$query ="select * from master_pelamar";
                     $sql = mysqli_query($koneksi, $query);
                     $value1 =cari_nilai("select target as nilai from pm_faktor where id_faktor=1");
                     $value2 =cari_nilai("select target as nilai from pm_faktor where id_faktor=2");
                     $value3 =cari_nilai("select target as nilai from pm_faktor where id_faktor=3");
-                    $value4 =cari_nilai("select target as nilai from pm_faktor where id_faktor=4");
                     if(mysqli_num_rows($sql) > 0){
                     while($row = mysqli_fetch_array($sql)){
                       $terbobot=array();
@@ -137,12 +125,6 @@
                       $sql3 = mysqli_query($koneksi, $query3);
                       $row3 = mysqli_fetch_array($sql3);
 
-                      $bobot4 = $row['A4']-$value4;
-                      $query4 ="select * from pm_bobot where selisih = ".$bobot4."";
-                      $sql4 = mysqli_query($koneksi, $query4);
-                      $row4 = mysqli_fetch_array($sql4);
-
-
                   ?>
                   <tr>
                     <td><?php echo $row['nama_pelamar'];?></td>
@@ -156,9 +138,6 @@
                     </td>
                     <td>
                         <?php echo $terbobot[$row['id_pelamar']] = $row3['bobot']?>
-                    </td>
-                    <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = $row4['bobot']?>
                     </td>
                   </tr>
                   <?php
@@ -177,19 +156,17 @@
                     <th>A1</th>
                     <th>A2</th>
                     <th>A3</th>
-                    <th>A4</th>
                     <th>NCF</th>
                     <th>NSF</th>
                     <th>Total</th>
                   </tr>
                   <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3,pm.A4 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3',sum( if(id_faktor=4,value,0) ) as 'A4' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
+                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
                     //$query ="select * from master_pelamar";
                     $sql = mysqli_query($koneksi, $query);
                     $value1 =cari_nilai("select target as nilai from pm_faktor where id_faktor=1");
                     $value2 =cari_nilai("select target as nilai from pm_faktor where id_faktor=2");
                     $value3 =cari_nilai("select target as nilai from pm_faktor where id_faktor=3");
-                    $value4 =cari_nilai("select target as nilai from pm_faktor where id_faktor=4");
                     if(mysqli_num_rows($sql) > 0){
                     while($row = mysqli_fetch_array($sql)){
                       $terbobot=array();
@@ -209,10 +186,6 @@
                       $sql3 = mysqli_query($koneksi, $query3);
                       $row3 = mysqli_fetch_array($sql3);
 
-                      $bobot4 = $row['A4']-$value4;
-                      $query4 ="select * from pm_bobot where selisih = ".$bobot4."";
-                      $sql4 = mysqli_query($koneksi, $query4);
-                      $row4 = mysqli_fetch_array($sql4);
                       $core_persen =cari_nilai("select bobot_core as nilai from pm_aspek where id_aspek=1");
                       $secondary_persen = cari_nilai("select bobot_secondary as nilai from pm_aspek where id_aspek=1");
 
@@ -231,16 +204,14 @@
                         <?php echo $terbobot[$row['id_pelamar']] = $row3['bobot']?>
                     </td>
                     <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = $row4['bobot']?>
+                       <?php echo $terbobot[$row['id_pelamar']] = ($row1['bobot']+$row2['bobot']+$row3['bobot'])/2?>
                     </td>
                     <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = ($row1['bobot']+$row3['bobot'])/2?>
-                    </td>
-                    <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = ($row2['bobot']+$row4['bobot'])/2?>
+                       <?php echo $terbobot[$row['id_pelamar']] = 0//($row2['bobot']+$row4['bobot'])/2?>
                     </td>
                     <td class="text-primary">
-                       <?php echo $terbobot[$row['id_pelamar']] = ($core_persen*(($row1['bobot']+$row3['bobot'])/2)/100)+($secondary_persen*(($row2['bobot']+$row4['bobot'])/2)/100)?>
+                       <?php //echo $terbobot[$row['id_pelamar']] = ($core_persen*(($row1['bobot']+$row3['bobot'])/2)/100)+($secondary_persen*(($row2['bobot']+$row4['bobot'])/2)/100)?>
+                       <?php echo $terbobot[$row['id_pelamar']] = ($core_persen*(($row1['bobot']+$row2['bobot']+$row3['bobot'])/3)/100)?>
                     </td>
 
                   </tr>
@@ -253,7 +224,6 @@
                   <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=1");?></td>
                   <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=2");?></td>
                   <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=3");?></td>
-                  <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=4");?></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -269,14 +239,14 @@
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
                     <th>Nama Tanaman Pangan</th>
+                    <th>A4</th>
                     <th>A5</th>
                     <th>A6</th>
                     <th>A7</th>
-                    <th>A8</th>
                     
                   </tr>
                   <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A5,pm.A6,pm.A7,pm.A8 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7',sum( if(id_faktor=8,value,0) ) as 'A8' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
+                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A4,pm.A5,pm.A6,pm.A7 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=4,value,0) ) as 'A4',sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
                     //$query ="select * from master_pelamar";
                     $sql = mysqli_query($koneksi, $query);
                     if(mysqli_num_rows($sql) > 0){
@@ -285,17 +255,16 @@
                   <tr>
                     <td><?php echo $row['nama_pelamar'];?></td>
                     <td>
+                      <?php echo $row['A4'];?>
+                    </td>
+                    <td>
                       <?php echo $row['A5'];?>
-
                     </td>
                     <td>
                       <?php echo $row['A6'];?>
                     </td>
                     <td>
                         <?php echo $row['A7'];?>
-                    </td>
-                    <td>
-                       <?php echo $row['A8'];?>
                     </td>
                     
                   </tr>
@@ -306,10 +275,10 @@
 
 </tbody><tfoot><tr>
 <th>Nilai Kriteria</th>
+<td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=4");?></td>
 <td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=5");?></td>
 <td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=6");?></td>
 <td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=7");?></td>
-<td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=8");?></td>
 </tr></tfoot>
 </table>
 </div>
@@ -318,19 +287,19 @@
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
                     <th>Nama Tanaman Pangan</th>
+                    <th>A4</th>
                     <th>A5</th>
                     <th>A6</th>
                     <th>A7</th>
-                    <th>A8</th>
                   </tr>
                   <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A5,pm.A6,pm.A7,pm.A8 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7',sum( if(id_faktor=8,value,0) ) as 'A8' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
+                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A4,pm.A5,pm.A6,pm.A7 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=4,value,0) ) as 'A4',sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
                     //$query ="select * from master_pelamar";
                     $sql = mysqli_query($koneksi, $query);
+                    $value4 =cari_nilai("select target as nilai from pm_faktor where id_faktor=4");
                     $value5 =cari_nilai("select target as nilai from pm_faktor where id_faktor=5");
                     $value6 =cari_nilai("select target as nilai from pm_faktor where id_faktor=6");
                     $value7 =cari_nilai("select target as nilai from pm_faktor where id_faktor=7");
-                    $value8 =cari_nilai("select target as nilai from pm_faktor where id_faktor=8");
                     if(mysqli_num_rows($sql) > 0){
                     while($row = mysqli_fetch_array($sql)){
                       $gap=array();
@@ -338,6 +307,9 @@
                   ?>
                   <tr>
                     <td><?php echo $row['nama_pelamar'];?></td>
+                    <td>
+                       <?php echo $gap[$row['id_pelamar']] = $row['A4']-$value4;?>
+                    </td>
                     <td>
                       <?php echo $gap[$row['id_pelamar']] = $row['A5']-$value5;?>
 
@@ -348,9 +320,6 @@
                     <td>
                         <?php echo $gap[$row['id_pelamar']] = $row['A7']-$value7;?>
                     </td>
-                    <td>
-                       <?php echo $gap[$row['id_pelamar']] = $row['A8']-$value8;?>
-                    </td>
                   </tr>
                   <?php
                     }
@@ -365,22 +334,28 @@
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
                     <th>Nama Tanaman Pangan</th>
+                    <th>A4</th>
                     <th>A5</th>
                     <th>A6</th>
                     <th>A7</th>
-                    <th>A8</th>
                   </tr>
                   <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A5,pm.A6,pm.A7,pm.A8 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7',sum( if(id_faktor=8,value,0) ) as 'A8' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
+                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A4,pm.A5,pm.A6,pm.A7 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=4,value,0) ) as 'A4',sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
                     //$query ="select * from master_pelamar";
                     $sql = mysqli_query($koneksi, $query);
+                    
+                    $value4 =cari_nilai("select target as nilai from pm_faktor where id_faktor=4");
                     $value5 =cari_nilai("select target as nilai from pm_faktor where id_faktor=5");
                     $value6 =cari_nilai("select target as nilai from pm_faktor where id_faktor=6");
                     $value7 =cari_nilai("select target as nilai from pm_faktor where id_faktor=7");
-                    $value8 =cari_nilai("select target as nilai from pm_faktor where id_faktor=8");
                     if(mysqli_num_rows($sql) > 0){
                     while($row = mysqli_fetch_array($sql)){
                       $terbobot=array();
+
+                      $bobot4 = $row['A4']-$value4;
+                      $query4 ="select * from pm_bobot where selisih = ".$bobot4."";
+                      $sql4 = mysqli_query($koneksi, $query4);
+                      $row4 = mysqli_fetch_array($sql4);
 
                       $bobot5 = $row['A5']-$value5;
                       $query5 ="select * from pm_bobot where selisih = ".$bobot5."";
@@ -397,28 +372,24 @@
                       $sql7 = mysqli_query($koneksi, $query7);
                       $row7 = mysqli_fetch_array($sql7);
 
-                      $bobot8 = $row['A8']-$value8;
-                      $query8 ="select * from pm_bobot where selisih = ".$bobot8."";
-                      $sql8 = mysqli_query($koneksi, $query8);
-                      $row8 = mysqli_fetch_array($sql8);
+                      
 
 
                   ?>
                   <tr>
                     <td><?php echo $row['nama_pelamar'];?></td>
+                    
                     <td>
-
+                       <?php echo $terbobot[$row['id_pelamar']] = $row4['bobot']?>
+                    </td>
+                    <td>
                       <?php echo $terbobot[$row['id_pelamar']] = $row5['bobot']?>
-
                     </td>
                     <td>
                       <?php echo $terbobot[$row['id_pelamar']] = $row6['bobot']?>
                     </td>
                     <td>
                         <?php echo $terbobot[$row['id_pelamar']] = $row7['bobot']?>
-                    </td>
-                    <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = $row8['bobot']?>
                     </td>
                   </tr>
                   <?php
@@ -434,25 +405,31 @@
 <table class="table  table-striped table-hover" style="border: 0px;">
 <tbody> <tr>
                     <th>Nama Tanaman Pangan</th>
+                    
+                    <th>A4</th>
                     <th>A5</th>
                     <th>A6</th>
                     <th>A7</th>
-                    <th>A8</th>
                     <th>NCF</th>
                     <th>NSF</th>
                     <th>Total</th>
                   </tr>
                   <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A5,pm.A6,pm.A7,pm.A8 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7',sum( if(id_faktor=8,value,0) ) as 'A8' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
+                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A4,pm.A5,pm.A6,pm.A7 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=4,value,0) ) as 'A4',sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
                     //$query ="select * from master_pelamar";
                     $sql = mysqli_query($koneksi, $query);
+                    $value4 =cari_nilai("select target as nilai from pm_faktor where id_faktor=4");
                     $value5 =cari_nilai("select target as nilai from pm_faktor where id_faktor=5");
                     $value6 =cari_nilai("select target as nilai from pm_faktor where id_faktor=6");
                     $value7 =cari_nilai("select target as nilai from pm_faktor where id_faktor=7");
-                    $value8 =cari_nilai("select target as nilai from pm_faktor where id_faktor=8");
                     if(mysqli_num_rows($sql) > 0){
                     while($row = mysqli_fetch_array($sql)){
                       $terbobot=array();
+
+                      $bobot4 = $row['A4']-$value4;
+                      $query4 ="select * from pm_bobot where selisih = ".$bobot4."";
+                      $sql8 = mysqli_query($koneksi, $query4);
+                      $row8 = mysqli_fetch_array($sql4);
 
                       $bobot5 = $row['A5']-$value5;
                       $query5 ="select * from pm_bobot where selisih = ".$bobot5."";
@@ -469,10 +446,6 @@
                       $sql7 = mysqli_query($koneksi, $query7);
                       $row7 = mysqli_fetch_array($sql7);
 
-                      $bobot8 = $row['A8']-$value8;
-                      $query8 ="select * from pm_bobot where selisih = ".$bobot8."";
-                      $sql8 = mysqli_query($koneksi, $query8);
-                      $row8 = mysqli_fetch_array($sql8);
                       $core_persen =cari_nilai("select bobot_core as nilai from pm_aspek where id_aspek=2");
                       $secondary_persen = cari_nilai("select bobot_secondary as nilai from pm_aspek where id_aspek=2");  
 
@@ -480,7 +453,9 @@
                   ?>
                   <tr>
                     <td><?php echo $row['nama_pelamar'];?></td>
-                    <td>
+                     <td>
+                       <?php echo $terbobot[$row['id_pelamar']] = $row4['bobot']?>
+                    </td><td>
 
                       <?php echo $terbobot[$row['id_pelamar']] = $row5['bobot']?>
 
@@ -491,17 +466,15 @@
                     <td>
                         <?php echo $terbobot[$row['id_pelamar']] = $row7['bobot']?>
                     </td>
+
                     <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = $row8['bobot']?>
+                       <?php echo 0;//$terbobot[$row['id_pelamar']] = ($row5['bobot']+$row7['bobot'])/2?>
                     </td>
                     <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = ($row5['bobot']+$row7['bobot'])/2?>
-                    </td>
-                    <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = ($row6['bobot']+$row8['bobot'])/2?>
+                       <?php echo $terbobot[$row['id_pelamar']] = ($row4['bobot']+$row5['bobot']+$row6['bobot']+$row7['bobot'])/4?>
                     </td>
                     <td class="text-primary">
-                       <?php echo $terbobot[$row['id_pelamar']] = ($core_persen*(($row5['bobot']+$row7['bobot'])/2)/100)+($secondary_persen*(($row6['bobot']+$row8['bobot'])/2)/100)?>
+                       <?php echo $terbobot[$row['id_pelamar']] = (($secondary_persen*(($row4['bobot']+$row5['bobot']+$row6['bobot']+$row7['bobot'])/4)/100));?>
                     </td>
 
                   </tr>
@@ -511,269 +484,11 @@
                   ?>
                   <tr>
                   <td></td>
+                  <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=4");?></td>
                   <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=5");?></td>
                   <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=6");?></td>
                   <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=7");?></td>
-                  <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=8");?></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  </tr>
-
-</tbody>
-</table>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading"><strong>Aspek Sikap Kerja</strong></div>
-<div class="table-responsive">
-<table class="table  table-striped table-hover" style="border: 0px;">
-<tbody> <tr>
-                    <th>Nama Tanaman Pangan</th>
-                    <th>A9</th>
-                    <th>A10</th>
-                    <th>A11</th>
-                    <th>A12</th>
-                  </tr>
-                  <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A9,pm.A10,pm.A11,pm.A12 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=9,value,0) ) as 'A9',sum( if(id_faktor=10,value,0) ) as 'A10',sum( if(id_faktor=11,value,0) ) as 'A11',sum( if(id_faktor=12,value,0) ) as 'A12' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
-                    //$query ="select * from master_pelamar";
-                    $sql = mysqli_query($koneksi, $query);
-                    if(mysqli_num_rows($sql) > 0){
-                    while($row = mysqli_fetch_array($sql)){
-                  ?>
-                  <tr>
-                    <td><?php echo $row['nama_pelamar'];?></td>
-                    <td>
-                      <?php echo $row['A9'];?>
-
-                    </td>
-                    <td>
-                      <?php echo $row['A10'];?>
-                    </td>
-                    <td>
-                        <?php echo $row['A11'];?>
-                    </td>
-                    <td>
-                       <?php echo $row['A12'];?>
-                    </td>
-                  </tr>
-                  <?php
-                    }
-                  }
-                  ?>
-
-</tbody><tfoot><tr>
-<th>Nilai Kriteria</th>
-<td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=9");?></td>
-<td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=10");?></td>
-<td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=11");?></td>
-<td class="text-primary"><?php echo cari_nilai("select target as nilai from pm_faktor where id_faktor=12");?></td>
-</tr></tfoot>
-</table>
-</div>
-<div class="panel-body">Perhitungan pemetaan gap <strong></strong>:</div>
-<div class="table-responsive">
-<table class="table  table-striped table-hover" style="border: 0px;">
-<tbody> <tr>
-                    <th>Nama Tanaman Pangan</th>
-                    <th>A9</th>
-                    <th>A10</th>
-                    <th>A11</th>
-                    <th>A12</th>
-                  </tr>
-                  <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A9,pm.A10,pm.A11,pm.A12 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=9,value,0) ) as 'A9',sum( if(id_faktor=10,value,0) ) as 'A10',sum( if(id_faktor=11,value,0) ) as 'A11',sum( if(id_faktor=12,value,0) ) as 'A12' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
-                    //$query ="select * from master_pelamar";
-                    $sql = mysqli_query($koneksi, $query);
-                    $value9 =cari_nilai("select target as nilai from pm_faktor where id_faktor=9");
-                    $value10 =cari_nilai("select target as nilai from pm_faktor where id_faktor=10");
-                    $value11 =cari_nilai("select target as nilai from pm_faktor where id_faktor=11");
-                    $value12 =cari_nilai("select target as nilai from pm_faktor where id_faktor=12");
-                    if(mysqli_num_rows($sql) > 0){
-                    while($row = mysqli_fetch_array($sql)){
-                      $gap=array();
-
-                  ?>
-                  <tr>
-                    <td><?php echo $row['nama_pelamar'];?></td>
-                    <td>
-                      <?php echo $gap[$row['id_pelamar']] = $row['A9']-$value9;?>
-
-                    </td>
-                    <td>
-                      <?php echo $gap[$row['id_pelamar']] = $row['A10']-$value10;?>
-                    </td>
-                    <td>
-                        <?php echo $gap[$row['id_pelamar']] = $row['A11']-$value11;?>
-                    </td>
-                    <td>
-                       <?php echo $gap[$row['id_pelamar']] = $row['A12']-$value12;?>
-                    </td>
-                  </tr>
-                  <?php
-                    }
-                  }
-                  ?>
-
-</tbody>
-</table>
-</div>
-<div class="panel-body">Pembobotan nilai gap <strong></strong>:</div>
-<div class="table-responsive">
-<table class="table  table-striped table-hover" style="border: 0px;">
-<tbody> <tr>
-                    <th>Nama Tanaman Pangan</th>
-                    <th>A9</th>
-                    <th>A10</th>
-                    <th>A11</th>
-                    <th>A12</th>
-                  </tr>
-                  <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A9,pm.A10,pm.A11,pm.A12 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=9,value,0) ) as 'A9',sum( if(id_faktor=10,value,0) ) as 'A10',sum( if(id_faktor=11,value,0) ) as 'A11',sum( if(id_faktor=12,value,0) ) as 'A12' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
-                    //$query ="select * from master_pelamar";
-                    $sql = mysqli_query($koneksi, $query);
-                    $value9 =cari_nilai("select target as nilai from pm_faktor where id_faktor=9");
-                    $value10 =cari_nilai("select target as nilai from pm_faktor where id_faktor=10");
-                    $value11 =cari_nilai("select target as nilai from pm_faktor where id_faktor=11");
-                    $value12 =cari_nilai("select target as nilai from pm_faktor where id_faktor=12");
-                    if(mysqli_num_rows($sql) > 0){
-                    while($row = mysqli_fetch_array($sql)){
-                      $terbobot=array();
-
-                      $bobot9 = $row['A9']-$value9;
-                      $query9 ="select * from pm_bobot where selisih = ".$bobot9."";
-                      $sql9 = mysqli_query($koneksi, $query9);
-                      $row9 = mysqli_fetch_array($sql9);
-
-                      $bobot10 = $row['A10']-$value10;
-                      $query10 ="select * from pm_bobot where selisih = ".$bobot10."";
-                      $sql10 = mysqli_query($koneksi, $query10);
-                      $row10 = mysqli_fetch_array($sql10);
-
-                      $bobot11 = $row['A11']-$value11;
-                      $query11 ="select * from pm_bobot where selisih = ".$bobot11."";
-                      $sql11 = mysqli_query($koneksi, $query11);
-                      $row11 = mysqli_fetch_array($sql11);
-
-                      $bobot12 = $row['A12']-$value12;
-                      $query12 ="select * from pm_bobot where selisih = ".$bobot12."";
-                      $sql12 = mysqli_query($koneksi, $query12);
-                      $row12 = mysqli_fetch_array($sql12);
-
-
-                  ?>
-                  <tr>
-                    <td><?php echo $row['nama_pelamar'];?></td>
-                    <td>
-
-                      <?php echo $terbobot[$row['id_pelamar']] = $row9['bobot']?>
-
-                    </td>
-                    <td>
-                      <?php echo $terbobot[$row['id_pelamar']] = $row10['bobot']?>
-                    </td>
-                    <td>
-                        <?php echo $terbobot[$row['id_pelamar']] = $row11['bobot']?>
-                    </td>
-                    <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = $row12['bobot']?>
-                    </td>
-                  </tr>
-                  <?php
-                    }
-                  }
-                  ?>
-
-</tbody>
-</table>
-</div>
-<div class="panel-body">Perhitungan factor <strong></strong>:</div>
-<div class="table-responsive">
-<table class="table  table-striped table-hover" style="border: 0px;">
-<tbody> <tr>
-                    <th>Nama Tanaman Pangan</th>
-                    <th>A9</th>
-                    <th>A10</th>
-                    <th>A11</th>
-                    <th>A12</th>
-                    <th>NCF</th>
-                    <th>NSF</th>
-                    <th>Total</th>
-                  </tr>
-                  <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A9,pm.A10,pm.A11,pm.A12 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=9,value,0) ) as 'A9',sum( if(id_faktor=10,value,0) ) as 'A10',sum( if(id_faktor=11,value,0) ) as 'A11',sum( if(id_faktor=12,value,0) ) as 'A12' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
-                    //$query ="select * from master_pelamar";
-                    $sql = mysqli_query($koneksi, $query);
-                    $value9 =cari_nilai("select target as nilai from pm_faktor where id_faktor=9");
-                    $value10 =cari_nilai("select target as nilai from pm_faktor where id_faktor=10");
-                    $value11 =cari_nilai("select target as nilai from pm_faktor where id_faktor=11");
-                    $value12 =cari_nilai("select target as nilai from pm_faktor where id_faktor=12");
-                    if(mysqli_num_rows($sql) > 0){
-                    while($row = mysqli_fetch_array($sql)){
-                      $terbobot=array();
-
-                      $bobot9 = $row['A9']-$value9;
-                      $query9 ="select * from pm_bobot where selisih = ".$bobot9."";
-                      $sql9 = mysqli_query($koneksi, $query9);
-                      $row9 = mysqli_fetch_array($sql9);
-
-                      $bobot10 = $row['A10']-$value10;
-                      $query10 ="select * from pm_bobot where selisih = ".$bobot10."";
-                      $sql10 = mysqli_query($koneksi, $query10);
-                      $row10 = mysqli_fetch_array($sql10);
-
-                      $bobot11 = $row['A11']-$value11;
-                      $query11 ="select * from pm_bobot where selisih = ".$bobot11."";
-                      $sql11 = mysqli_query($koneksi, $query11);
-                      $row11 = mysqli_fetch_array($sql11);
-
-                      $bobot12 = $row['A12']-$value12;
-                      $query12 ="select * from pm_bobot where selisih = ".$bobot12."";
-                      $sql12 = mysqli_query($koneksi, $query12);
-                      $row12 = mysqli_fetch_array($sql12);
-                      $core_persen =cari_nilai("select bobot_core as nilai from pm_aspek where id_aspek=3");
-                      $secondary_persen = cari_nilai("select bobot_secondary as nilai from pm_aspek where id_aspek=3");  
-
-
-                  ?>
-                  <tr>
-                    <td><?php echo $row['nama_pelamar'];?></td>
-                    <td>
-
-                      <?php echo $terbobot[$row['id_pelamar']] = $row9['bobot']?>
-
-                    </td>
-                    <td>
-                      <?php echo $terbobot[$row['id_pelamar']] = $row10['bobot']?>
-                    </td>
-                    <td>
-                        <?php echo $terbobot[$row['id_pelamar']] = $row11['bobot']?>
-                    </td>
-                    <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = $row12['bobot']?>
-                    </td>
-                    <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = ($row9['bobot']+$row10['bobot'])/2?>
-                    </td>
-                    <td>
-                       <?php echo $terbobot[$row['id_pelamar']] = ($row11['bobot']+$row12['bobot'])/2?>
-                    </td>
-                    <td class="text-primary">
-                       <?php echo $terbobot[$row['id_pelamar']] = ($core_persen*(($row9['bobot']+$row10['bobot'])/2)/100)+($secondary_persen*(($row11['bobot']+$row12['bobot'])/2)/100)?>
-                    </td>
-
-                  </tr>
-                  <?php
-                    }
-                  }
-                  ?>
-                  <tr>
-                  <td></td>
-                  <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=9");?></td>
-                  <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=10");?></td>
-                  <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=11");?></td>
-                  <td class="text-primary"><?php echo cari_nilai("select type as nilai from pm_faktor where id_faktor=12");?></td>
+                  
                   <td></td>
                   <td></td>
                   <td></td>
@@ -798,7 +513,6 @@
 <th>Nama Tanaman Pangan</th>
 <th>Aspek Kecerdasan</th>
  <th>Aspek Wawancara</th>
-<th>Aspek Sikap Kerja</th>
 <th>Total</th>
 <th>Rank</th>
 </tr>
@@ -806,12 +520,11 @@
 <td>Persentase</td>
 <td><?php echo cari_nilai("select Prosentase as nilai from pm_aspek where id_aspek=1");?>%</td>
 <td><?php echo cari_nilai("select Prosentase as nilai from pm_aspek where id_aspek=2");?>%</td>
-<td><?php echo cari_nilai("select Prosentase as nilai from pm_aspek where id_aspek=3");?>%</td>
 <td></td>
 <td></td>
 </tr>
 <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3,pm.A4,pm.A5,pm.A6,pm.A7,pm.A8,pm.A9,pm.A10,pm.A11,pm.A12 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3',sum( if(id_faktor=4,value,0) ) as 'A4',sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7',sum( if(id_faktor=8,value,0) ) as 'A8',sum( if(id_faktor=9,value,0) ) as 'A9',sum( if(id_faktor=10,value,0) ) as 'A10',sum( if(id_faktor=11,value,0) ) as 'A11',sum( if(id_faktor=12,value,0) ) as 'A12' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
+                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3,pm.A4,pm.A5,pm.A6,pm.A7 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3',sum( if(id_faktor=4,value,0) ) as 'A4',sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
                     //$query ="select * from master_pelamar";
                     $sql = mysqli_query($koneksi, $query);
                     $value1 =cari_nilai("select target as nilai from pm_faktor where id_faktor=1");
@@ -821,20 +534,13 @@
                     $value5 =cari_nilai("select target as nilai from pm_faktor where id_faktor=5");
                     $value6 =cari_nilai("select target as nilai from pm_faktor where id_faktor=6");
                     $value7 =cari_nilai("select target as nilai from pm_faktor where id_faktor=7");
-                    $value8 =cari_nilai("select target as nilai from pm_faktor where id_faktor=8");
-                    $value9 =cari_nilai("select target as nilai from pm_faktor where id_faktor=9");
-                    $value10 =cari_nilai("select target as nilai from pm_faktor where id_faktor=10");
-                    $value11 =cari_nilai("select target as nilai from pm_faktor where id_faktor=11");
-                    $value12 =cari_nilai("select target as nilai from pm_faktor where id_faktor=12");
                     $persen_1 = cari_nilai("select Prosentase as nilai from pm_aspek where id_aspek=1");
                     $persen_2 = cari_nilai("select Prosentase as nilai from pm_aspek where id_aspek=2");
-                    $persen_3 = cari_nilai("select Prosentase as nilai from pm_aspek where id_aspek=3");
                     if(mysqli_num_rows($sql) > 0){
                     while($row = mysqli_fetch_array($sql)){
 					  
                       $terbobot1=array();
                       $terbobot2=array();
-                      $terbobot3=array();
                       $terbobot_total=array();
 					  
                       $bobot1 = $row['A1']-$value1;
@@ -871,54 +577,24 @@
                       $query7 ="select * from pm_bobot where selisih = ".$bobot7."";
                       $sql7 = mysqli_query($koneksi, $query7);
                       $row7 = mysqli_fetch_array($sql7);
-
-                      $bobot8 = $row['A8']-$value8;
-                      $query8 ="select * from pm_bobot where selisih = ".$bobot8."";
-                      $sql8 = mysqli_query($koneksi, $query8);
-                      $row8 = mysqli_fetch_array($sql8);
-
-                      $bobot9 = $row['A9']-$value9;
-                      $query9 ="select * from pm_bobot where selisih = ".$bobot9."";
-                      $sql9 = mysqli_query($koneksi, $query9);
-                      $row9 = mysqli_fetch_array($sql9);
-
-                      $bobot10 = $row['A10']-$value10;
-                      $query10 ="select * from pm_bobot where selisih = ".$bobot10."";
-                      $sql10 = mysqli_query($koneksi, $query10);
-                      $row10 = mysqli_fetch_array($sql10);
-
-                      $bobot11 = $row['A11']-$value11;
-                      $query11 ="select * from pm_bobot where selisih = ".$bobot11."";
-                      $sql11 = mysqli_query($koneksi, $query11);
-                      $row11 = mysqli_fetch_array($sql11);
-
-                      $bobot12 = $row['A12']-$value12;
-                      $query12 ="select * from pm_bobot where selisih = ".$bobot12."";
-                      $sql12 = mysqli_query($koneksi, $query12);
-                      $row12 = mysqli_fetch_array($sql12);
                       
                       $core_persen_1 =cari_nilai("select bobot_core as nilai from pm_aspek where id_aspek=1");
                       $secondary_persen_1 = cari_nilai("select bobot_secondary as nilai from pm_aspek where id_aspek=1");  
                       $core_persen_2 =cari_nilai("select bobot_core as nilai from pm_aspek where id_aspek=2");
-                      $secondary_persen_2 = cari_nilai("select bobot_secondary as nilai from pm_aspek where id_aspek=2");  
-                      $core_persen_3 =cari_nilai("select bobot_core as nilai from pm_aspek where id_aspek=3");
-                      $secondary_persen_3 = cari_nilai("select bobot_secondary as nilai from pm_aspek where id_aspek=3");  
+                      $secondary_persen_2 = cari_nilai("select bobot_secondary as nilai from pm_aspek where id_aspek=2"); 
 
 
                   ?>
                   <tr>
                     <td><?php echo $row['nama_pelamar'];?></td>
                     <td>
-                       <?php echo $terbobot1[$row['id_pelamar']] = ($core_persen_1*(($row1['bobot']+$row3['bobot'])/2)/100)+($secondary_persen_1*(($row2['bobot']+$row4['bobot'])/2)/100)?>
+                       <?php echo $terbobot1[$row['id_pelamar']] = ($core_persen_1*(($row1['bobot']+$row2['bobot']+$row3['bobot'])/3)/100)+0?>
                     </td>
                    <td>
-                       <?php echo $terbobot2[$row['id_pelamar']] = ($core_persen_2*(($row5['bobot']+$row7['bobot'])/2)/100)+($secondary_persen_2*(($row6['bobot']+$row8['bobot'])/2)/100)?>
+                       <?php echo $terbobot2[$row['id_pelamar']] = 0+($secondary_persen_2*(($row4['bobot']+$row5['bobot']+$row6['bobot']+$row7['bobot'])/4)/100)?>
                     </td>
                     <td>
-                       <?php echo $terbobot3[$row['id_pelamar']] = ($core_persen_3*(($row9['bobot']+$row10['bobot'])/2)/100)+($secondary_persen_3*(($row11['bobot']+$row12['bobot'])/2)/100)?>
-                    </td>
-                    <td>
-                      <?php echo $terbobot_total[$row['id_pelamar']] = ($persen_1*(($core_persen_1*(($row1['bobot']+$row3['bobot'])/2)/100)+($secondary_persen_1*(($row2['bobot']+$row4['bobot'])/2)/100))/100)+($persen_2*(($core_persen_2*(($row5['bobot']+$row7['bobot'])/2)/100)+($secondary_persen_2*(($row6['bobot']+$row8['bobot'])/2)/100))/100)+($persen_3*(($core_persen_3*(($row9['bobot']+$row10['bobot'])/2)/100)+($secondary_persen_3*(($row11['bobot']+$row12['bobot'])/2)/100))/100)?>
+                      <?php echo $terbobot_total[$row['id_pelamar']] = ($persen_1*(($core_persen_1*(($row1['bobot']+$row2['bobot']+$row3['bobot'])/3)/100)+0)/100)+($persen_2*(0+($secondary_persen_2*(($row4['bobot']+$row5['bobot']+$row6['bobot']+$row7['bobot'])/4)/100))/100)?>
                     </td>
                     <td class="text-primary">
                         <?php
