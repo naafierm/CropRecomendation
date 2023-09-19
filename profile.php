@@ -1,5 +1,5 @@
 <?php // jika submit button diklik
-  if(isset( $_REQUEST['Simpan_kandunganNutrisi'] ) ){
+  if(isset( $_REQUEST['Simpan_kecerdasan'] ) ){
     
       $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(1,2,3,4)");
       $queryloop = "SELECT * FROM master_pelamar";
@@ -9,12 +9,12 @@
             $a1 = array(array($row_loop['id_pelamar'],1,$_REQUEST[$row_loop['id_pelamar'].'_A1']));
             $a2 = array(array($row_loop['id_pelamar'],2,$_REQUEST[$row_loop['id_pelamar'].'_A2']));
             $a3 = array(array($row_loop['id_pelamar'],3,$_REQUEST[$row_loop['id_pelamar'].'_A3']));
-            $a4 = array(array($row_loop['id_pelamar'],4,$_REQUEST[$row_loop['id_pelamar'].'_A4']));
+            // $a4 = array(array($row_loop['id_pelamar'],4,$_REQUEST[$row_loop['id_pelamar'].'_A4']));
             
             $sqla1 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a1[0][0]."', '".$a1[0][1]."', '".$a1[0][2]."')");
              $sqla2 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a2[0][0]."', '".$a2[0][1]."', '".$a2[0][2]."')");
               $sqla3 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a3[0][0]."', '".$a3[0][1]."', '".$a3[0][2]."')");
-               $sqla4 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a4[0][0]."', '".$a4[0][1]."', '".$a4[0][2]."')");
+              //  $sqla4 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a4[0][0]."', '".$a4[0][1]."', '".$a4[0][2]."')");
 
                echo "<script>alert('Proses Profile Matching Tersimpan');location='home.php?page=profile';</script>";
 
@@ -23,7 +23,7 @@
 
     }
 
-   if(isset( $_REQUEST['Simpan_kondisiLingkungan'] ) ){
+   if(isset( $_REQUEST['Simpan_wawancara'] ) ){
     
       $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(5,6,7,8)");
       $queryloop = "SELECT * FROM master_pelamar";
@@ -46,44 +46,19 @@
 
     }
 
-  //  if(isset( $_REQUEST['Simpan_sikapkerja'] ) ){
-    
-  //     $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(9,10,11,12)");
-  //     $queryloop = "SELECT * FROM master_pelamar";
-  //     $sql_loop = mysqli_query($koneksi, $queryloop);
-  //     if(mysqli_num_rows($sql_loop) > 0){
-  //         while($row_loop = mysqli_fetch_array($sql_loop)){
-  //           $a9 = array(array($row_loop['id_pelamar'],9,$_REQUEST[$row_loop['id_pelamar'].'_A9']));
-  //           $a10 = array(array($row_loop['id_pelamar'],10,$_REQUEST[$row_loop['id_pelamar'].'_A10']));
-  //           $a11 = array(array($row_loop['id_pelamar'],11,$_REQUEST[$row_loop['id_pelamar'].'_A11']));
-  //           $a12 = array(array($row_loop['id_pelamar'],12,$_REQUEST[$row_loop['id_pelamar'].'_A12']));
-            
-  //           $sqla1 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a9[0][0]."', '".$a9[0][1]."', '".$a9[0][2]."')");
-  //            $sqla2 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a10[0][0]."', '".$a10[0][1]."', '".$a10[0][2]."')");
-  //             $sqla3 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a11[0][0]."', '".$a11[0][1]."', '".$a11[0][2]."')");
-  //              $sqla4 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a12[0][0]."', '".$a12[0][1]."', '".$a12[0][2]."')");
-
-  //              echo "<script>alert('Proses Profile Matching Tersimpan');location='home.php?page=profile';</script>";
-
-  //         }
-  //     }
-
-  //   }
+   
 
 ?>
     <form class="form-kecerdasan" method="post" action="" role="form">
     <div class="card mb-6 shadow-sm">
       <div class="card-header">
-         <div class="col-6">
+         <div class="col-6" > 
             <select class="custom-select d-block w-50" id="aspek" name="aspek" required>
+              
               <option value="">Pilih Aspek...</option>
-              <option value="Kandungan Nutrisi Tanah" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Kandungan Nutrisi Tanah" ? "selected=selected" : "";?>>Kandungan Nutrisi Tanah</option>
-              <option value="Kondisi Lingkungan" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Kondisi Lingkungan" ? "selected=selected" : "";?>>Kondisi Lingkungan</option>
-              <!-- <option value="Potassium" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Potassium" ? "selected=selected" : "";?>>Potassium</option>
-              <option value="Suhu Tanah" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Suhu Tanah" ? "selected=selected" : "";?>>Suhu Tanah</option>
-              <option value="Kelmebapan Tanah" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Kelmebapan Tanah" ? "selected=selected" : "";?>>Kelmebapan Tanah</option>
-              <option value="Nilai ph Tanah" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Nilai ph Tanah" ? "selected=selected" : "";?>>Nilai ph Tanaha</option>
-              <option value="Curah Hujan" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Curah Hujan" ? "selected=selected" : "";?>>Curah Hujan</option> -->
+               <option value="kecerdasan">Kondisi Nutrisi Tanah</option>
+              <option value="wawancara" >Kondisi Lingkungan</option>
+             
             </select>
          </div>
       </div>
@@ -98,10 +73,6 @@
                     <th>A1 - Nitrogen</th>
                     <th>A2 - Phosporous</th>
                     <th>A3 - Potassium</th>
-                    <th>A4 - Suhu Tanah</th>
-                    <th>A5 - Kelembapan Tanah</th>
-                    <th>A6 - Nilai pH Tanah</th>
-                    <th>A7 - Curah Hujan</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -116,35 +87,36 @@
                     <td><?php echo $row['nama_pelamar'];?></td>
                     <td>
                       <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A1">
-                        <option value="1"  <?php echo $row['A1'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2"  <?php echo $row['A1'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3"  <?php echo $row['A1'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4"  <?php echo $row['A1'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
+                      <option value="1"  <?php echo $row['A1'] == 1 ? "selected=selected" : "";?>>1 </option>
+                        <option value="2"  <?php echo $row['A1'] == 2 ? "selected=selected" : "";?>>2 </option>
+                        <option value="3"  <?php echo $row['A1'] == 3 ? "selected=selected" : "";?>>3 </option>
+                        <option value="4"  <?php echo $row['A1'] == 4 ? "selected=selected" : "";?>>4 </option>
+                        <option value="2"  <?php echo $row['A1'] == 5 ? "selected=selected" : "";?>>5 </option>
+                        <option value="3"  <?php echo $row['A1'] == 6 ? "selected=selected" : "";?>>6 </option>
+                        <option value="4"  <?php echo $row['A1'] == 7 ? "selected=selected" : "";?>>7 </option>
                       </select>
 
                     </td>
                     <td>
                        <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A2">
-                        <option value="1" <?php echo $row['A2'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A2'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A2'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A2'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
+                       <option value="1"  <?php echo $row['A1'] == 1 ? "selected=selected" : "";?>>1 </option>
+                        <option value="2"  <?php echo $row['A1'] == 2 ? "selected=selected" : "";?>>2 </option>
+                        <option value="3"  <?php echo $row['A1'] == 3 ? "selected=selected" : "";?>>3 </option>
+                        <option value="4"  <?php echo $row['A1'] == 4 ? "selected=selected" : "";?>>4 </option>
+                        <option value="2"  <?php echo $row['A1'] == 5 ? "selected=selected" : "";?>>5 </option>
+                        <option value="3"  <?php echo $row['A1'] == 6 ? "selected=selected" : "";?>>6 </option>
+                        <option value="4"  <?php echo $row['A1'] == 7 ? "selected=selected" : "";?>>7 </option>
                       </select>
                     </td>
                     <td>
                         <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A3">
-                        <option value="1" <?php echo $row['A3'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A3'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A3'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A3'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
-                      </select>
-                    </td>
-                    <td>
-                        <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A4">
-                        <option value="1" <?php echo $row['A4'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A4'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A4'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A4'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
+                        <option value="1"  <?php echo $row['A1'] == 1 ? "selected=selected" : "";?>>1 </option>
+                        <option value="2"  <?php echo $row['A1'] == 2 ? "selected=selected" : "";?>>2 </option>
+                        <option value="3"  <?php echo $row['A1'] == 3 ? "selected=selected" : "";?>>3 </option>
+                        <option value="4"  <?php echo $row['A1'] == 4 ? "selected=selected" : "";?>>4 </option>
+                        <option value="2"  <?php echo $row['A1'] == 5 ? "selected=selected" : "";?>>5 </option>
+                        <option value="3"  <?php echo $row['A1'] == 6 ? "selected=selected" : "";?>>6 </option>
+                        <option value="4"  <?php echo $row['A1'] == 7 ? "selected=selected" : "";?>>7 </option>
                       </select>
                     </td>
                   </tr>
@@ -162,11 +134,11 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Nama Pelamar</th>
-                  <th>A5 - Kejujuran</th>
-                  <th>A6 - Pengetahuan Tentang pekerjaan</th>
-                  <th>A7 - Pengalaman</th>
-                  <th>A8 - Karakter</th>
+                  <th>Nama Tanaman Pangan</th>
+                  <th>A5 - Suhu Tanah</th>
+                  <th>A6 - Kelembapan Tanah</th>
+                  <th>A7 - Nilai pH Tanah</th>
+                  <th>A8 - Curah Hujan</th>
                 </tr>
               </thead>
               <tbody>
@@ -181,35 +153,47 @@
                     <td><?php echo $row['nama_pelamar'];?></td>
                     <td>
                       <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A5">
-                        <option value="1"  <?php echo $row['A5'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2"  <?php echo $row['A5'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3"  <?php echo $row['A5'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4"  <?php echo $row['A5'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
+                        <option value="1"  <?php echo $row['A5'] == 1 ? "selected=selected" : "";?>>1</option>
+                        <option value="2"  <?php echo $row['A5'] == 2 ? "selected=selected" : "";?>>2</option>
+                        <option value="3"  <?php echo $row['A5'] == 3 ? "selected=selected" : "";?>>3</option>
+                        <option value="4"  <?php echo $row['A5'] == 4 ? "selected=selected" : "";?>>4</option>
+                        <option value="5"  <?php echo $row['A5'] == 2 ? "selected=selected" : "";?>>5</option>
+                        <option value="6"  <?php echo $row['A5'] == 3 ? "selected=selected" : "";?>>6</option>
+                        <option value="7"  <?php echo $row['A5'] == 4 ? "selected=selected" : "";?>>7</option>
                       </select>
 
                     </td>
                     <td>
                        <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A6">
-                        <option value="1" <?php echo $row['A6'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A6'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A6'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A6'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
+                        <option value="1"  <?php echo $row['A5'] == 1 ? "selected=selected" : "";?>>1</option>
+                        <option value="2"  <?php echo $row['A5'] == 2 ? "selected=selected" : "";?>>2</option>
+                        <option value="3"  <?php echo $row['A5'] == 3 ? "selected=selected" : "";?>>3</option>
+                        <option value="4"  <?php echo $row['A5'] == 4 ? "selected=selected" : "";?>>4</option>
+                        <option value="5"  <?php echo $row['A5'] == 2 ? "selected=selected" : "";?>>5</option>
+                        <option value="6"  <?php echo $row['A5'] == 3 ? "selected=selected" : "";?>>6</option>
+                        <option value="7"  <?php echo $row['A5'] == 4 ? "selected=selected" : "";?>>7</option>
                       </select>
                     </td>
                     <td>
                         <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A7">
-                        <option value="1" <?php echo $row['A7'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A7'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A7'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A7'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
+                        <option value="1"  <?php echo $row['A5'] == 1 ? "selected=selected" : "";?>>1</option>
+                        <option value="2"  <?php echo $row['A5'] == 2 ? "selected=selected" : "";?>>2</option>
+                        <option value="3"  <?php echo $row['A5'] == 3 ? "selected=selected" : "";?>>3</option>
+                        <option value="4"  <?php echo $row['A5'] == 4 ? "selected=selected" : "";?>>4</option>
+                        <option value="5"  <?php echo $row['A5'] == 2 ? "selected=selected" : "";?>>5</option>
+                        <option value="6"  <?php echo $row['A5'] == 3 ? "selected=selected" : "";?>>6</option>
+                        <option value="7"  <?php echo $row['A5'] == 4 ? "selected=selected" : "";?>>7</option>
                       </select>
                     </td>
                     <td>
                         <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A8">
-                        <option value="1" <?php echo $row['A8'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A8'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A8'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A8'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
+                        <option value="1"  <?php echo $row['A5'] == 1 ? "selected=selected" : "";?>>1</option>
+                        <option value="2"  <?php echo $row['A5'] == 2 ? "selected=selected" : "";?>>2</option>
+                        <option value="3"  <?php echo $row['A5'] == 3 ? "selected=selected" : "";?>>3</option>
+                        <option value="4"  <?php echo $row['A5'] == 4 ? "selected=selected" : "";?>>4</option>
+                        <option value="5"  <?php echo $row['A5'] == 2 ? "selected=selected" : "";?>>5</option>
+                        <option value="6"  <?php echo $row['A5'] == 3 ? "selected=selected" : "";?>>6</option>
+                        <option value="7"  <?php echo $row['A5'] == 4 ? "selected=selected" : "";?>>7</option>
                       </select>
                     </td>
                   </tr>
@@ -222,11 +206,11 @@
           
              <button class="btn btn-success" type="submit" id="Simpan_wawancara" name="Simpan_wawancara">Simpan</button>
            </div>
-           <div id="spninactive_sikapkerja" style="display:none;">
+           <!-- <div id="spninactive_sikapkerja" style="display:none;">
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Nama Pelamar</th>
+                  <th>Nama Tanaman Pangan</th>
                   <th>A9 - Kecepatan</th>
                   <th>A10 - Ketelitian</th>
                   <th>A11 - Inisiatif</th>
@@ -285,7 +269,7 @@
             </table>
              <button class="btn btn-success" type="submit" id="Simpan_sikapkerja" name="Simpan_sikapkerja">Simpan</button>
            </div>
-          </div>
+          </div> -->
       </div>
     </div>
     </form>
