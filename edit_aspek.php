@@ -1,6 +1,6 @@
 <div class="container">
 		<h2 align="center" style="margin: 30px;">Edit Data Aspek</h2>
-		<?php
+		<?php  
 			// data difilter terlebih dahulu & base64_decode berguna untuk mendeskripsi id yg sebelumnya di enkripsi/encoding
 			$id = stripslashes(strip_tags(htmlspecialchars(base64_decode($_GET['aa']) ,ENT_QUOTES)));
 
