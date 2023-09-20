@@ -1,22 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2020 at 06:30 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Sep 20, 2023 at 02:31 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `dss_profile_matching`
@@ -40,11 +33,10 @@ CREATE TABLE `master_pelamar` (
 --
 
 INSERT INTO `master_pelamar` (`id_pelamar`, `nama_pelamar`, `no_hp`, `email`) VALUES
-(1, 'Farhan Muhammad', '081212678712', 'FarhanMuhammad@gmail.com'),
-(2, 'Irfan Priyadi Nurfauzi', '081212678712', 'IrfanPriyadiNurfauzi@gmail.com'),
-(3, 'Muhamad Firdaus', '081212678712', 'MuhamadFirdaus@gmail.com'),
-(4, 'Randi Agus Revaldi', '081212678712', 'RandiAgusRevaldi@gmail.com'),
-(5, 'Sulthan Aldi Budiono', '081212678712', 'SulthanAldiBudiono@gmail.com');
+(1, 'padi', '', ''),
+(2, 'jagung', '0', 'rfanPriyadiNurfauzi@gmail.comI'),
+(3, 'kacang', '0', 'MuhamadFirdaus@gmail.com'),
+(10, 'apel', '', '');
 
 -- --------------------------------------------------------
 
@@ -69,7 +61,8 @@ CREATE TABLE `master_user` (
 --
 
 INSERT INTO `master_user` (`id_user`, `username`, `nama`, `password`, `level`, `dibuat_oleh`, `tgl_dibuat`, `diubah_oleh`, `tgl_diubah`) VALUES
-(1, 'HRD', 'Muhamad Fikri Rahmat', '21232f297a57a5a743894a0e4a801fc3', 1, 1, '2020-08-25 22:05:05', 0, '0000-00-00 00:00:00');
+(1, 'HRD', 'Muhamad Fikri Rahmat', '21232f297a57a5a743894a0e4a801fc3', 1, 1, '2020-08-25 22:05:05', 0, '0000-00-00 00:00:00'),
+(2, 'admin', 'iqbal', '21232f297a57a5a743894a0e4a801fc3', 1, 0, '2023-09-17 14:41:28', 0, '2023-09-17 14:41:28');
 
 -- --------------------------------------------------------
 
@@ -90,9 +83,8 @@ CREATE TABLE `pm_aspek` (
 --
 
 INSERT INTO `pm_aspek` (`id_aspek`, `aspek`, `prosentase`, `bobot_core`, `bobot_secondary`) VALUES
-(1, 'Kecerdasan', 40, 60, 40),
-(2, 'Wawancara', 30, 60, 40),
-(3, 'Sikap Kerja', 30, 60, 40);
+(1, 'kondisi tanah', 40, 60, 40),
+(2, 'kondisi lingkungan', 60, 60, 40);
 
 -- --------------------------------------------------------
 
@@ -111,15 +103,13 @@ CREATE TABLE `pm_bobot` (
 --
 
 INSERT INTO `pm_bobot` (`selisih`, `bobot`, `keterangan`) VALUES
-(0, 5, 'Tidak ada selisih (kompetensi sesuai dgn yg dibutuhkan)'),
-(1, 4.5, 'Kompetensi individu kelebihan 1 tingkat'),
-(-1, 4, 'Kompetensi individu kekurangan 1 tingkat'),
-(2, 3.5, 'Kompetensi individu kelebihan 2 tingkat'),
-(-2, 3, 'Kompetensi individu kekurangan 2 tingkat'),
-(3, 2.5, 'Kompetensi individu  kelebihan 3 tingkat'),
-(-3, 2, 'Kompetensi individu  kekurangan 3 tingkat'),
-(4, 1.5, 'Kompetensi individu kelebihan 4 tingkat'),
-(-4, 1, 'Kompetensi individu kekurangan 4 tingkat');
+(0, 4, '7'),
+(1, 3.5, '6'),
+(-1, 3, '5'),
+(2, 2.5, '4'),
+(-2, 2, '3'),
+(3, 1.5, '2'),
+(-3, 1, '1');
 
 -- --------------------------------------------------------
 
@@ -140,18 +130,13 @@ CREATE TABLE `pm_faktor` (
 --
 
 INSERT INTO `pm_faktor` (`id_faktor`, `id_aspek`, `faktor`, `target`, `type`) VALUES
-(1, 1, 'Penguasaan Bahasa Pemprograman', 4, 'core'),
-(2, 1, 'Kreatif', 4, 'secondary'),
-(3, 1, 'Logika', 4, 'core'),
-(4, 1, 'Inovatif', 3, 'secondary'),
-(5, 2, 'Kejujuran', 4, 'core'),
-(6, 2, 'Pengetahuan Tentang pekerjaan', 4, 'secondary'),
-(7, 2, 'Pengalaman', 3, 'core'),
-(8, 2, 'Karakter', 3, 'secondary'),
-(9, 3, 'Kecepatan', 4, 'core'),
-(10, 3, 'Ketelitian', 3, 'core'),
-(11, 3, 'Inisiatif', 3, 'secondary'),
-(12, 3, 'Percaya Diri', 3, 'secondary');
+(1, 1, 'Nitrogen (N)', 4, 'core'),
+(6, 2, 'Nilai pH Tanah', 2, 'secondary'),
+(5, 2, 'Kelembapan Tanah', 3, 'secondary'),
+(4, 2, 'Suhu Tanah', 4, 'secondary'),
+(2, 1, 'Potassium', 4, 'core'),
+(3, 1, 'Phosporous', 4, 'core'),
+(7, 2, 'Curah Hujan', 1, 'secondary');
 
 -- --------------------------------------------------------
 
@@ -169,13 +154,10 @@ CREATE TABLE `pm_ranking` (
 --
 
 INSERT INTO `pm_ranking` (`id_pelamar`, `nilai_akhir`) VALUES
-(8, '1.84'),
-(1, '4.05'),
-(2, '4.45'),
-(3, '4.47'),
-(4, '4.31'),
-(5, '4.42'),
-(9, '4.03');
+(1, '1.38'),
+(2, '1.24'),
+(3, '1.06'),
+(10, '1.41');
 
 -- --------------------------------------------------------
 
@@ -195,78 +177,54 @@ CREATE TABLE `pm_sample` (
 --
 
 INSERT INTO `pm_sample` (`id_sample`, `id_pelamar`, `id_faktor`, `value`) VALUES
-(532, 5, 8, 4),
-(559, 9, 11, 3),
-(556, 5, 12, 4),
-(531, 5, 7, 4),
-(530, 5, 6, 4),
-(529, 5, 5, 2),
-(528, 4, 8, 3),
-(527, 4, 7, 4),
-(512, 9, 4, 2),
-(555, 5, 11, 3),
-(526, 4, 6, 4),
-(554, 5, 10, 4),
-(525, 4, 5, 2),
-(524, 3, 8, 3),
-(553, 5, 9, 3),
-(511, 9, 3, 2),
-(552, 4, 12, 4),
-(523, 3, 7, 4),
-(560, 9, 12, 3),
-(557, 9, 9, 3),
-(522, 3, 6, 2),
-(521, 3, 5, 4),
-(534, 9, 6, 3),
-(551, 4, 11, 3),
-(520, 2, 8, 4),
-(536, 9, 8, 3),
-(519, 2, 7, 4),
-(510, 9, 2, 3),
-(550, 4, 10, 3),
-(518, 2, 6, 4),
-(517, 2, 5, 4),
-(549, 4, 9, 4),
-(548, 3, 12, 3),
-(516, 1, 8, 3),
-(515, 1, 7, 3),
-(514, 1, 6, 3),
-(547, 3, 11, 3),
-(513, 1, 5, 2),
-(546, 3, 10, 3),
-(509, 9, 1, 2),
-(508, 5, 4, 4),
-(545, 3, 9, 3),
-(507, 5, 3, 3),
-(506, 5, 2, 4),
-(544, 2, 12, 4),
-(505, 5, 1, 4),
-(504, 4, 4, 4),
-(543, 2, 11, 3),
-(503, 4, 3, 2),
-(502, 4, 2, 2),
-(542, 2, 10, 4),
-(501, 4, 1, 4),
-(500, 3, 4, 4),
-(541, 2, 9, 4),
-(499, 3, 3, 2),
-(498, 3, 2, 4),
-(558, 9, 10, 3),
-(540, 1, 12, 2),
-(497, 3, 1, 4),
-(496, 2, 4, 4),
-(495, 2, 3, 3),
-(539, 1, 11, 3),
-(494, 2, 2, 4),
-(493, 2, 1, 2),
-(533, 9, 5, 3),
-(538, 1, 10, 2),
-(492, 1, 4, 3),
-(491, 1, 3, 2),
-(535, 9, 7, 2),
-(537, 1, 9, 4),
-(490, 1, 2, 3),
-(489, 1, 1, 2);
+(766, 3, 8, 0),
+(628, 4, 12, 1),
+(765, 3, 7, 3),
+(764, 3, 6, 3),
+(763, 3, 5, 2),
+(627, 4, 11, 3),
+(762, 3, 4, 2),
+(761, 2, 8, 0),
+(626, 4, 10, 3),
+(625, 4, 9, 4),
+(760, 2, 7, 4),
+(759, 2, 6, 4),
+(758, 2, 5, 1),
+(624, 3, 12, 4),
+(757, 2, 4, 4),
+(623, 3, 11, 3),
+(622, 3, 10, 3),
+(621, 3, 9, 3),
+(620, 2, 12, 4),
+(619, 2, 11, 3),
+(618, 2, 10, 4),
+(617, 2, 9, 4),
+(616, 1, 12, 2),
+(748, 3, 3, 2),
+(747, 3, 2, 1),
+(746, 3, 1, 2),
+(615, 1, 11, 3),
+(745, 2, 3, 2),
+(744, 2, 2, 4),
+(756, 1, 8, 0),
+(614, 1, 10, 2),
+(743, 2, 1, 2),
+(742, 1, 3, 4),
+(755, 1, 7, 4),
+(613, 1, 9, 4),
+(741, 1, 2, 2),
+(740, 1, 1, 3),
+(754, 1, 6, 3),
+(753, 1, 5, 3),
+(752, 1, 4, 2),
+(749, 10, 1, 3),
+(750, 10, 2, 4),
+(751, 10, 3, 2),
+(767, 10, 4, 3),
+(768, 10, 5, 4),
+(769, 10, 6, 3),
+(770, 10, 7, 4),
+(771, 10, 8, 0);
 
 --
 -- Indexes for dumped tables
@@ -316,33 +274,29 @@ ALTER TABLE `pm_sample`
 -- AUTO_INCREMENT for table `master_pelamar`
 --
 ALTER TABLE `master_pelamar`
-  MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `master_user`
 --
 ALTER TABLE `master_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pm_aspek`
 --
 ALTER TABLE `pm_aspek`
-  MODIFY `id_aspek` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_aspek` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pm_faktor`
 --
 ALTER TABLE `pm_faktor`
-  MODIFY `id_faktor` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_faktor` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `pm_sample`
 --
 ALTER TABLE `pm_sample`
-  MODIFY `id_sample` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=561;
+  MODIFY `id_sample` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=772;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
