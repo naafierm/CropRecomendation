@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2023 at 02:31 AM
+-- Generation Time: Sep 28, 2023 at 04:25 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -83,7 +83,7 @@ CREATE TABLE `pm_aspek` (
 --
 
 INSERT INTO `pm_aspek` (`id_aspek`, `aspek`, `prosentase`, `bobot_core`, `bobot_secondary`) VALUES
-(1, 'kondisi tanah', 40, 60, 40),
+(1, 'kondisi tanah', 40, 70, 30),
 (2, 'kondisi lingkungan', 60, 60, 40);
 
 -- --------------------------------------------------------
@@ -130,7 +130,7 @@ CREATE TABLE `pm_faktor` (
 --
 
 INSERT INTO `pm_faktor` (`id_faktor`, `id_aspek`, `faktor`, `target`, `type`) VALUES
-(1, 1, 'Nitrogen (N)', 4, 'core'),
+(1, 1, 'Nitrogen (N)', 4, 'secondary'),
 (6, 2, 'Nilai pH Tanah', 2, 'secondary'),
 (5, 2, 'Kelembapan Tanah', 3, 'secondary'),
 (4, 2, 'Suhu Tanah', 4, 'secondary'),
@@ -154,10 +154,10 @@ CREATE TABLE `pm_ranking` (
 --
 
 INSERT INTO `pm_ranking` (`id_pelamar`, `nilai_akhir`) VALUES
-(1, '1.38'),
-(2, '1.24'),
-(3, '1.06'),
-(10, '1.41');
+(1, '0.92'),
+(2, '0.99'),
+(3, '0.76'),
+(10, '0.92');
 
 -- --------------------------------------------------------
 
@@ -177,21 +177,21 @@ CREATE TABLE `pm_sample` (
 --
 
 INSERT INTO `pm_sample` (`id_sample`, `id_pelamar`, `id_faktor`, `value`) VALUES
-(766, 3, 8, 0),
+(791, 10, 8, 0),
 (628, 4, 12, 1),
-(765, 3, 7, 3),
-(764, 3, 6, 3),
-(763, 3, 5, 2),
+(948, 10, 7, 4),
+(947, 10, 6, 4),
+(946, 10, 5, 4),
 (627, 4, 11, 3),
-(762, 3, 4, 2),
-(761, 2, 8, 0),
+(945, 10, 4, 4),
+(786, 3, 8, 0),
 (626, 4, 10, 3),
 (625, 4, 9, 4),
-(760, 2, 7, 4),
-(759, 2, 6, 4),
-(758, 2, 5, 1),
+(944, 3, 7, 4),
+(943, 3, 6, 3),
+(942, 3, 5, 1),
 (624, 3, 12, 4),
-(757, 2, 4, 4),
+(941, 3, 4, 1),
 (623, 3, 11, 3),
 (622, 3, 10, 3),
 (621, 3, 9, 3),
@@ -200,31 +200,31 @@ INSERT INTO `pm_sample` (`id_sample`, `id_pelamar`, `id_faktor`, `value`) VALUES
 (618, 2, 10, 4),
 (617, 2, 9, 4),
 (616, 1, 12, 2),
-(748, 3, 3, 2),
-(747, 3, 2, 1),
-(746, 3, 1, 2),
+(960, 10, 3, 1),
+(959, 10, 2, 1),
+(958, 10, 1, 1),
 (615, 1, 11, 3),
-(745, 2, 3, 2),
-(744, 2, 2, 4),
-(756, 1, 8, 0),
+(957, 3, 3, 1),
+(956, 3, 2, 1),
+(781, 2, 8, 0),
 (614, 1, 10, 2),
-(743, 2, 1, 2),
-(742, 1, 3, 4),
-(755, 1, 7, 4),
+(955, 3, 1, 1),
+(954, 2, 3, 1),
+(940, 2, 7, 1),
 (613, 1, 9, 4),
-(741, 1, 2, 2),
-(740, 1, 1, 3),
-(754, 1, 6, 3),
-(753, 1, 5, 3),
-(752, 1, 4, 2),
-(749, 10, 1, 3),
-(750, 10, 2, 4),
-(751, 10, 3, 2),
-(767, 10, 4, 3),
-(768, 10, 5, 4),
-(769, 10, 6, 3),
-(770, 10, 7, 4),
-(771, 10, 8, 0);
+(953, 2, 2, 2),
+(952, 2, 1, 1),
+(939, 2, 6, 1),
+(938, 2, 5, 1),
+(937, 2, 4, 1),
+(951, 1, 3, 1),
+(950, 1, 2, 1),
+(949, 1, 1, 1),
+(776, 1, 8, 0),
+(936, 1, 7, 4),
+(935, 1, 6, 4),
+(934, 1, 5, 4),
+(933, 1, 4, 4);
 
 --
 -- Indexes for dumped tables
@@ -298,5 +298,5 @@ ALTER TABLE `pm_faktor`
 -- AUTO_INCREMENT for table `pm_sample`
 --
 ALTER TABLE `pm_sample`
-  MODIFY `id_sample` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=772;
+  MODIFY `id_sample` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=961;
 COMMIT;

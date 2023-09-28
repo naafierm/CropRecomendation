@@ -96,6 +96,9 @@ if( empty( $_SESSION['id_user'] ) ){
                 case 'perhitungan':
                   echo "Hasil Perhitungan";
                   break;
+                case 'perhitunganlama':
+                  echo "Hasil Perhitunganlama";
+                  break;
                 // case 'gantipassword':
                 //   echo "Ganti Password";
                 //   break;
@@ -148,6 +151,9 @@ if( empty( $_SESSION['id_user'] ) ){
         break;
       case 'perhitungan':
         include "perhitungan.php";
+        break;
+      case 'perhitunganlama':
+        include "perhitunganlama.php";
         break;
       case 'gantipassword':
         include "gantipassword.php";

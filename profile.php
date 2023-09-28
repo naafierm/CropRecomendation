@@ -1,75 +1,16 @@
 <?php // jika submit button diklik
-  if(isset( $_REQUEST['Simpan_kandunganNutrisi'] ) ){
-    
-      $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(1,2,3)");
-      $queryloop = "SELECT * FROM master_pelamar";
-      $sql_loop = mysqli_query($koneksi, $queryloop);
-      if(mysqli_num_rows($sql_loop) > 0){
-          while($row_loop = mysqli_fetch_array($sql_loop)){
-            $a1 = array(array($row_loop['id_pelamar'],1,$_REQUEST[$row_loop['id_pelamar'].'_A1']));
-            $a2 = array(array($row_loop['id_pelamar'],2,$_REQUEST[$row_loop['id_pelamar'].'_A2']));
-            $a3 = array(array($row_loop['id_pelamar'],3,$_REQUEST[$row_loop['id_pelamar'].'_A3']));
-            
-            $sqla1 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a1[0][0]."', '".$a1[0][1]."', '".$a1[0][2]."')");
-            $sqla2 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a2[0][0]."', '".$a2[0][1]."', '".$a2[0][2]."')");
-            $sqla3 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a3[0][0]."', '".$a3[0][1]."', '".$a3[0][2]."')");
-
-
-            echo "<script>alert('Proses Profile Matching Tersimpan');location='home.php?page=profile';</script>";
-
-          }
+    if(isset( $_REQUEST['Simpan'] ) ){
+      $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(select id_faktor from pm_faktor where id_aspek = ".$_REQUEST['aspek_id'].")");
+      foreach ($_REQUEST as $key => $value) {
+      // Check if the key matches the pattern [X-Y] where X and Y are integers
+      if (preg_match('/^\d+-\d+$/', $key)) {
+          $parts = explode("-", $key);
+          mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$parts[0]."', '".$parts[1]."', '".$value."')");
       }
-
     }
-
-   if(isset( $_REQUEST['Simpan_kondisiLingkungan'] ) ){
-    
-      $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(4,5,6,7,8)");
-      $queryloop = "SELECT * FROM master_pelamar";
-      $sql_loop = mysqli_query($koneksi, $queryloop);
-      if(mysqli_num_rows($sql_loop) > 0){
-          while($row_loop = mysqli_fetch_array($sql_loop)){
-            $a4 = array(array($row_loop['id_pelamar'],4,$_REQUEST[$row_loop['id_pelamar'].'_A4']));
-            $a5 = array(array($row_loop['id_pelamar'],5,$_REQUEST[$row_loop['id_pelamar'].'_A5']));
-            $a6 = array(array($row_loop['id_pelamar'],6,$_REQUEST[$row_loop['id_pelamar'].'_A6']));
-            $a7 = array(array($row_loop['id_pelamar'],7,$_REQUEST[$row_loop['id_pelamar'].'_A7']));
-            $a8 = array(array($row_loop['id_pelamar'],8,$_REQUEST[$row_loop['id_pelamar'].'_A8']));
-            
-            $sqla4 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a4[0][0]."', '".$a4[0][1]."', '".$a4[0][2]."')");
-            $sqla1 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a5[0][0]."', '".$a5[0][1]."', '".$a5[0][2]."')");
-            $sqla2 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a6[0][0]."', '".$a6[0][1]."', '".$a6[0][2]."')");
-            $sqla3 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a7[0][0]."', '".$a7[0][1]."', '".$a7[0][2]."')");
-            $sqla4 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a8[0][0]."', '".$a8[0][1]."', '".$a8[0][2]."')");
-            echo "<script>alert('Proses Profile Matching Tersimpan');location='home.php?page=profile';</script>";
-
-          }
-      }
-
+    // print_r($_REQUEST);die();
+    echo "<script>alert('Proses Profile ".$_REQUEST['aspek']."Matching Tersimpan');location='home.php?page=profile';</script>";
     }
-
-  //  if(isset( $_REQUEST['Simpan_sikapkerja'] ) ){
-    
-  //     $sql_truncate = mysqli_query($koneksi, "DELETE FROM pm_sample where id_faktor in(9,10,11,12)");
-  //     $queryloop = "SELECT * FROM master_pelamar";
-  //     $sql_loop = mysqli_query($koneksi, $queryloop);
-  //     if(mysqli_num_rows($sql_loop) > 0){
-  //         while($row_loop = mysqli_fetch_array($sql_loop)){
-  //           $a9 = array(array($row_loop['id_pelamar'],9,$_REQUEST[$row_loop['id_pelamar'].'_A9']));
-  //           $a10 = array(array($row_loop['id_pelamar'],10,$_REQUEST[$row_loop['id_pelamar'].'_A10']));
-  //           $a11 = array(array($row_loop['id_pelamar'],11,$_REQUEST[$row_loop['id_pelamar'].'_A11']));
-  //           $a12 = array(array($row_loop['id_pelamar'],12,$_REQUEST[$row_loop['id_pelamar'].'_A12']));
-            
-  //           $sqla1 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a9[0][0]."', '".$a9[0][1]."', '".$a9[0][2]."')");
-  //            $sqla2 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a10[0][0]."', '".$a10[0][1]."', '".$a10[0][2]."')");
-  //             $sqla3 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a11[0][0]."', '".$a11[0][1]."', '".$a11[0][2]."')");
-  //              $sqla4 = mysqli_query($koneksi, "INSERT INTO pm_sample(id_sample, id_pelamar, id_faktor, value) VALUES('', '".$a12[0][0]."', '".$a12[0][1]."', '".$a12[0][2]."')");
-
-  //              echo "<script>alert('Proses Profile Matching Tersimpan');location='home.php?page=profile';</script>";
-
-  //         }
-  //     }
-
-  //   }
 
 ?>
     <form class="form-kecerdasan" method="post" action="" role="form">
@@ -78,140 +19,93 @@
          <div class="col-6">
             <select class="custom-select d-block w-50" id="aspek" name="aspek" required>
               <option value="">Pilih Aspek...</option>
-              <option  id="option1" value="Kandungan Nutrisi Tanah" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Kandungan Nutrisi Tanah" ? "selected=selected" : "";?>>Kandungan Nutrisi Tanah</option>
-              <option  id="option2" value="Kondisi Lingkungan" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Kondisi Lingkungan" ? "selected=selected" : "";?>>Kondisi Lingkungan</option>
-              <!-- <option value="Potassium" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Potassium" ? "selected=selected" : "";?>>Potassium</option>
-              <option value="Suhu Tanah" <?php echo isset($_GET['aspek']) && $_GET['aspek'] == "Suhu Tanah" ? "selected=selected" : "";?>>Suhu Tanah</option>
-              <option value="Kelmebapan Tanah" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Kelmebapan Tanah" ? "selected=selected" : "";?>>Kelmebapan Tanah</option>
-              <option value="Nilai ph Tanah" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Nilai ph Tanah" ? "selected=selected" : "";?>>Nilai ph Tanaha</option>
-              <option value="Curah Hujan" <?php isset($_GET['aspek']) && $_GET['aspek'] == "Curah Hujan" ? "selected=selected" : "";?>>Curah Hujan</option> -->
-            </select>
+            
+
+            <?php
+                    $query = "select * from pm_aspek";
+                    $sql = mysqli_query($koneksi, $query);
+                    if(mysqli_num_rows($sql) > 0){
+                    while($row = mysqli_fetch_array($sql)){
+                       $selected = isset($_GET['aspek_id']) && $_GET['aspek_id'] == $row['id_aspek'] ? "selected='selected'" : "";
+
+                        echo '<option  id="'.$row['id_aspek'].'" value="'.$row['aspek'].'" '.$selected.'>'.$row['aspek'].'</option>';
+                      }
+                    }
+                      ?>
+                      </select>
          </div>
       </div>
       <div class="card-body">
           <div class="container">
-            <div id="spninactive_option1" style="display:none;">
-              
-              <table class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>Nama Tanaman Pangan</th>
-                    <th>A1 - Nitrogen</th>
-                    <th>A2 - Phosporous</th>
-                    <th>A3 - Potassium</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A1,pm.A2,pm.A3 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=1,value,0) ) as 'A1',sum( if(id_faktor=2,value,0) ) as 'A2',sum( if(id_faktor=3,value,0) ) as 'A3' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
-                    //$query ="select * from master_pelamar";
-                    $sql = mysqli_query($koneksi, $query);
-                    if(mysqli_num_rows($sql) > 0){
-                    while($row = mysqli_fetch_array($sql)){
-                  ?>
-                  <tr>
-                    <td><?php echo $row['nama_pelamar'];?></td>
-                    <td>
-                      <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A1">
-                        <option value="1"  <?php echo $row['A1'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2"  <?php echo $row['A1'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3"  <?php echo $row['A1'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4"  <?php echo $row['A1'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
-                      </select>
-
-                    </td>
-                    <td>
-                       <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A2">
-                        <option value="1" <?php echo $row['A2'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A2'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A2'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A2'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
-                      </select>
-                    </td>
-                    <td>
-                        <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A3">
-                        <option value="1" <?php echo $row['A3'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A3'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A3'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A3'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <?php
-                    }
-                  }
-                  ?>
-                </tbody>
-              </table>
-              <button class="btn btn-success" type="submit" id="Simpan_kandunganNutrisi" name="Simpan_kandunganNutrisi">Simpan</button>
-              
-            </div>
-            <div id="spninactive_option2" style="display:none;">
+           <div id="spninactive_option" style="display:none;">
             
             <table class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>Nama Tanaman Pangan</th>
-                    <th>A4 - Suhu Tanah</th>
-                    <th>A5 - Kelembapan Tanah</th>
-                    <th>A6 - Nilai pH Tanah</th>
-                    <th>A7 - Curah Hujan</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                    $query = "SELECT mp.id_pelamar,mp.nama_pelamar,pm.A4,pm.A5,pm.A6,pm.A7,pm.A8 FROM master_pelamar mp left JOIN (SELECT * FROM( select id_pelamar,sum( if(id_faktor=4,value,0) ) as 'A4' , sum( if(id_faktor=5,value,0) ) as 'A5',sum( if(id_faktor=6,value,0) ) as 'A6',sum( if(id_faktor=7,value,0) ) as 'A7',sum( if(id_faktor=8,value,0) ) as 'A8' from pm_sample group by id_pelamar)tbl) pm on mp.id_pelamar =pm.id_pelamar";
-                    //$query ="select * from master_pelamar";
+            <?php
+                if(isset($_GET['aspek_id']) && $_GET['aspek_id']){
+
+                    $query = "SELECT * FROM `pm_faktor` where id_aspek =".$_GET['aspek_id'];
                     $sql = mysqli_query($koneksi, $query);
+                    echo '<table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                  <th>Nama Tanaman Pangan</th>';
+
                     if(mysqli_num_rows($sql) > 0){
                     while($row = mysqli_fetch_array($sql)){
-                  ?>
-                  <tr>
-                    <td><?php echo $row['nama_pelamar'];?></td>
-                    <td>
-                        <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A4">
-                        <option value="1" <?php echo $row['A4'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A4'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A4'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A4'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A5">
-                        <option value="1"  <?php echo $row['A5'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2"  <?php echo $row['A5'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3"  <?php echo $row['A5'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4"  <?php echo $row['A5'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
-                      </select>
+                       echo "<th>".$row['faktor']."</th>";
+                      }
+                    }
+                    echo "</tr>
+                          </thead>
+                          <tbody>";
+                $query_pelamar = "select * from master_pelamar";
+                $sql_pelamar = mysqli_query($koneksi, $query_pelamar);
+                if(mysqli_num_rows($sql_pelamar) > 0){
+                    while($row_pelamar = mysqli_fetch_array($sql_pelamar)){
+                       echo "<tr>";
+                       echo "<td>".$row_pelamar['nama_pelamar']."</td>";
+                       $query_faktor = "select a.* from pm_sample a RIGHT JOIN pm_faktor b on a.id_faktor=b.id_faktor where a.id_pelamar = ".$row_pelamar['id_pelamar']." and b.id_aspek = ".$_GET['aspek_id']." order by b.id_faktor asc";
+                       $sql_faktor = mysqli_query($koneksi, $query_faktor);
+                        if(mysqli_num_rows($sql_faktor) > 0){
+                      while($row_faktor = mysqli_fetch_array($sql_faktor)){
+                        echo "<td>
+                      <select class='custom-select d-block w-100' name=".$row_pelamar['id_pelamar']."-".$row_faktor['id_faktor'].">";
+                             if($row_faktor['value'] == 1)
+                              echo "<option value='1'  selected='selected' >1 - Kurang</option>";
+                             else
+                              echo "<option value='1'   >1 - Kurang</option>";
 
-                    </td>
-                    <td>
-                       <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A6">
-                        <option value="1" <?php echo $row['A6'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A6'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A6'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A6'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
-                      </select>
-                    </td>
-                    <td>
-                        <select class="custom-select d-block w-100" name="<?php echo $row['id_pelamar']?>_A7">
-                        <option value="1" <?php echo $row['A7'] == 1 ? "selected=selected" : "";?>>1 - Kurang</option>
-                        <option value="2" <?php echo $row['A7'] == 2 ? "selected=selected" : "";?>>2 - Cukup</option>
-                        <option value="3" <?php echo $row['A7'] == 3 ? "selected=selected" : "";?>>3 - Baik</option>
-                        <option value="4" <?php echo $row['A7'] == 4 ? "selected=selected" : "";?>>4 - Sangat Baik</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <?php
+                            if($row_faktor['value'] == 2)
+                              echo "<option value='2'  selected='selected' >2 - Cukup</option>";
+                             else
+                              echo "<option value='2'   >2 - Cukup</option>";
+
+                            if($row_faktor['value'] == 3)
+                              echo "<option value='3'  selected='selected' >3 - Baik</option>";
+                             else
+                              echo "<option value='3'   >3 - Baik</option>";
+
+                            if($row_faktor['value'] == 4)
+                              echo "<option value='4'  selected='selected' >4 - Sangat Baik</option>";
+                             else
+                              echo "<option value='4'   >4 - Sangat Baik</option>";
+
+                            }                          
+                      echo "</select>";
+
+                       echo "<tr>";
+                      }
                     }
                   }
-                  ?>
-              </tbody>
+                
+                echo "
+                </tbody>
             </table>
           
-             <button class="btn btn-success" type="submit" id="Simpan_kondisiLingkungan" name="Simpan_kondisiLingkungan">Simpan</button>
-           </div>
-           
+             <button class='btn btn-success' type='submit' id='Simpan' name='Simpan'>Simpan</button>
+             ";
+              }
+             ?>
           </div>
       </div>
     </div>
@@ -221,12 +115,16 @@
    $(document).ready(function() {
     console.log("ayam");
       var ddlTxt = $("#aspek option:selected").attr("id");
-      $("#spninactive_" + ddlTxt).show();
+      $("#spninactive_option").show();
         console.log(ddlTxt);
       $("#aspek").on("change", function() {
         var ddlTxt = $("#aspek option:selected").attr("id");
         $(".container div").hide();
-        $("#spninactive_" + ddlTxt).show();
+        $("#spninactive_option").show();
+        console.log(ddlTxt);
+        var currentURL = window.location.href;
+        var cleanURL = currentURL.split('?')[0];
+        window.location.href = cleanURL+'?page=profile&aspek_id='+ddlTxt;
       });
 
   });
